@@ -1,0 +1,506 @@
+<title>HomeGest Dirección Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Concepto: cuatro móviles en rejilla sobre un escenario neutro; cada pantalla es una pregunta (qué hago hoy, cómo vamos, añadir, comprar).
+   Paleta: verde pino profundo (marca), amarillo señal (acción principal), tres colores de miembro, neutros con tinte verde. */
+:root {
+  --stage: #DDE3DA;
+  --bg: #EEF1EC;
+  --surface: #FFFFFF;
+  --surface-2: #E3E9E1;
+  --ink: #0F2620;
+  --ink-2: #51655C;
+  --line: #D3DBD1;
+  --brand: #0F5C47;
+  --brand-ink: #FFFFFF;
+  --pop: #FFC83D;
+  --pop-ink: #2A2000;
+  --m1: #3F5BD8;
+  --m2: #D6457A;
+  --m3: #D9700F;
+  --warn: #9A5B00;
+  --warn-bg: #FFEFC9;
+  --good: #1B7A44;
+  --scrim: rgba(8, 20, 16, .55);
+  --font-display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --stage: #060E0B; --bg: #0B1613; --surface: #13231F; --surface-2: #1C302A;
+    --ink: #E8F0EB; --ink-2: #9DB3A9; --line: #25392F;
+    --brand: #5FD3A5; --brand-ink: #04231A; --pop: #FFC83D; --pop-ink: #2A2000;
+    --m1: #8EA2FF; --m2: #FF86AE; --m3: #FFA55E;
+    --warn: #FFC96B; --warn-bg: #3A2D0D; --good: #6FDC9C; --scrim: rgba(0, 0, 0, .6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --stage: #060E0B; --bg: #0B1613; --surface: #13231F; --surface-2: #1C302A;
+  --ink: #E8F0EB; --ink-2: #9DB3A9; --line: #25392F;
+  --brand: #5FD3A5; --brand-ink: #04231A; --pop: #FFC83D; --pop-ink: #2A2000;
+  --m1: #8EA2FF; --m2: #FF86AE; --m3: #FFA55E;
+  --warn: #FFC96B; --warn-bg: #3A2D0D; --good: #6FDC9C; --scrim: rgba(0, 0, 0, .6);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--stage); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.45; padding-inline: 16px; padding-block: 32px 56px; }
+h1, h2, h3, p { margin: 0; }
+.page { max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+
+.intro { display: flex; flex-direction: column; gap: 10px; max-width: 62ch; }
+.intro .tag { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); font-weight: 600; }
+.intro h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 5vw, 46px); line-height: 1.02; letter-spacing: -.02em; text-wrap: balance; }
+.intro p { color: var(--ink-2); }
+
+.screens { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 340px)); gap: 28px; justify-content: center; }
+.col { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.cap { font-size: 13px; color: var(--ink-2); padding-inline: 4px; }
+.cap b { color: var(--ink); font-weight: 700; }
+
+/* Marco de móvil */
+.phone { position: relative; width: 100%; max-width: 340px; height: 700px; background: var(--bg); border: 1px solid var(--line); border-radius: 38px; overflow: hidden; box-shadow: 0 1px 0 var(--line), 0 24px 48px -28px rgba(0, 0, 0, .45); }
+.scroll { height: 100%; overflow-y: auto; padding: 18px 16px 110px; display: flex; flex-direction: column; gap: 14px; scrollbar-width: none; }
+.scroll::-webkit-scrollbar { display: none; }
+
+/* Barra superior */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.ctx { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px 7px 8px; font-weight: 600; font-size: 14px; }
+.ctx .dot { width: 22px; height: 22px; border-radius: 50%; background: var(--brand); color: var(--brand-ink); display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: 12px; }
+.stack { display: flex; }
+.stack .av { margin-left: -8px; border: 2px solid var(--bg); }
+.stack .av:first-child { margin-left: 0; }
+
+.av { width: 26px; height: 26px; border-radius: 50%; display: inline-grid; place-items: center; color: #fff; font-size: 12px; font-weight: 700; flex: none; }
+.av.m1 { background: var(--m1); } .av.m2 { background: var(--m2); } .av.m3 { background: var(--m3); }
+:root[data-theme="dark"] .av { color: #0B1613; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .av { color: #0B1613; } }
+
+/* Tipografía de pantalla */
+.date { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); font-weight: 600; }
+.h1 { font-family: var(--font-display); font-weight: 800; font-size: 34px; line-height: 1; letter-spacing: -.025em; text-wrap: balance; }
+.label { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); font-weight: 600; }
+.num { font-family: var(--font-display); font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.tab { font-variant-numeric: tabular-nums; }
+
+/* Tarjetas: solo las que son objetos */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.card-h { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.card-h h3 { font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: -.01em; }
+.link { color: var(--brand); font-weight: 700; font-size: 13px; background: none; border: 0; padding: 4px 0; cursor: pointer; font-family: inherit; }
+
+.row { display: flex; align-items: center; gap: 12px; min-height: 52px; border-top: 1px solid var(--line); }
+.row:first-of-type { border-top: 0; }
+.row .grow { flex: 1; min-width: 0; }
+.row .t { font-weight: 600; overflow-wrap: anywhere; }
+.row .s { font-size: 13px; color: var(--ink-2); }
+.chk { width: 26px; height: 26px; border-radius: 9px; border: 2px solid var(--ink-2); background: transparent; flex: none; display: grid; place-items: center; cursor: pointer; padding: 0; color: transparent; }
+.chk svg { width: 16px; height: 16px; }
+.chk[aria-checked="true"] { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); }
+
+.pill { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: var(--surface-2); color: var(--ink); white-space: nowrap; }
+.pill.warn { background: var(--warn-bg); color: var(--warn); }
+.pill svg { width: 12px; height: 12px; }
+
+.btn { font-family: inherit; font-weight: 700; font-size: 15px; border-radius: 16px; padding: 13px 16px; border: 0; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; }
+.btn.primary { background: var(--brand); color: var(--brand-ink); }
+.btn.ghost { background: var(--surface-2); color: var(--ink); }
+.btn.pop { background: var(--pop); color: var(--pop-ink); }
+.btn.full { width: 100%; }
+.btn:focus-visible, .chk:focus-visible, .link:focus-visible, .seg button:focus-visible, .nav button:focus-visible { outline: 3px solid var(--m1); outline-offset: 2px; }
+.btn svg { width: 20px; height: 20px; }
+
+.bar { height: 10px; border-radius: 6px; background: var(--surface-2); overflow: hidden; }
+.bar > i { display: block; height: 100%; background: var(--brand); border-radius: 6px; }
+
+/* Navegación inferior */
+.nav { position: absolute; left: 0; right: 0; bottom: 0; background: var(--surface); border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr 84px 1fr 1fr; align-items: end; padding: 8px 8px 14px; }
+.nav button { background: none; border: 0; color: var(--ink-2); font-family: inherit; font-size: 11px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 0; cursor: pointer; min-height: 48px; }
+.nav button svg { width: 24px; height: 24px; }
+.nav button[aria-current="page"] { color: var(--brand); }
+.nav .fab { width: 62px; height: 62px; border-radius: 22px; background: var(--pop); color: var(--pop-ink); margin: -30px auto 0; justify-content: center; box-shadow: 0 10px 20px -8px rgba(0, 0, 0, .5); padding: 0; }
+.nav .fab svg { width: 30px; height: 30px; }
+
+/* Resumen de dinero */
+.big { font-size: 46px; line-height: .95; }
+.cat { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; }
+.cat .bar { grid-column: 1 / -1; }
+.bal { display: flex; align-items: center; gap: 10px; }
+.arrow { color: var(--ink-2); display: inline-flex; }
+.arrow svg { width: 18px; height: 18px; }
+.amt { font-family: var(--font-display); font-weight: 700; font-variant-numeric: tabular-nums; font-size: 17px; }
+.review { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: var(--warn-bg); color: var(--warn); border-radius: 18px; padding: 12px 14px; font-weight: 700; }
+.review .btn { min-height: 38px; padding: 8px 12px; font-size: 14px; background: var(--warn); color: var(--warn-bg); }
+
+/* Pantalla Añadir */
+.dim { position: absolute; inset: 0; background: var(--scrim); }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; top: 56px; background: var(--bg); border-radius: 28px 28px 0 0; padding: 10px 16px 16px; display: flex; flex-direction: column; gap: 14px; overflow-y: auto; scrollbar-width: none; }
+.grab { width: 40px; height: 5px; border-radius: 3px; background: var(--line); margin: 0 auto 4px; flex: none; }
+.cap-field { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 2px solid var(--brand); border-radius: 22px; padding: 12px 12px 12px 16px; }
+.cap-field .txt { flex: 1; font-size: 18px; font-weight: 600; min-width: 0; overflow-wrap: anywhere; }
+.mic { width: 48px; height: 48px; border-radius: 16px; background: var(--brand); color: var(--brand-ink); display: grid; place-items: center; flex: none; border: 0; }
+.mic svg { width: 24px; height: 24px; }
+.quick { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.quick button { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 10px 2px; font-family: inherit; font-size: 12px; font-weight: 600; color: var(--ink); display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; min-height: 62px; }
+.quick svg { width: 22px; height: 22px; color: var(--brand); }
+.prop { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+.prop .big2 { font-size: 40px; line-height: 1; }
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 14px; }
+.kv dt { color: var(--ink-2); } .kv dd { margin: 0; font-weight: 600; text-align: right; overflow-wrap: anywhere; }
+.seg { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--surface-2); border-radius: 14px; padding: 3px; gap: 3px; }
+.seg button { font-family: inherit; font-size: 12.5px; font-weight: 700; border: 0; background: transparent; color: var(--ink-2); padding: 9px 4px; border-radius: 11px; cursor: pointer; min-height: 40px; }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0, 0, 0, .18); }
+.split { display: flex; gap: 6px; flex-wrap: wrap; }
+.split span { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; background: var(--surface-2); border-radius: 999px; padding: 4px 10px 4px 4px; }
+.split .av { width: 22px; height: 22px; font-size: 11px; }
+.conf { display: grid; grid-template-columns: 1fr 1.4fr; gap: 8px; }
+
+/* Compra */
+.add { display: flex; gap: 8px; }
+.add .field { flex: 1; min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 0 14px; min-height: 52px; display: flex; align-items: center; color: var(--ink-2); font-size: 16px; }
+.sec { display: flex; flex-direction: column; }
+.sec .label { padding: 6px 2px; }
+.item { display: flex; align-items: center; gap: 14px; min-height: 60px; padding: 0 4px; border-top: 1px solid var(--line); background: none; border-left: 0; border-right: 0; border-bottom: 0; width: 100%; font-family: inherit; color: var(--ink); text-align: left; cursor: pointer; font-size: 18px; font-weight: 600; }
+.item .grow { flex: 1; min-width: 0; }
+.item .qty { font-size: 14px; color: var(--ink-2); font-weight: 500; }
+.item[aria-pressed="true"] .nm { text-decoration: line-through; color: var(--ink-2); }
+.item[aria-pressed="true"] .chk { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); }
+.item .chk { width: 30px; height: 30px; pointer-events: none; }
+.item:focus-visible { outline: 3px solid var(--m1); outline-offset: -3px; border-radius: 10px; }
+
+/* Sistema visual */
+.system { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.sys { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 18px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.sys h2 { font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: -.01em; }
+.sw { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.sw div { border-radius: 14px; padding: 28px 8px 8px; font-size: 11px; font-weight: 700; border: 1px solid var(--line); }
+.specimen .d { font-family: var(--font-display); font-weight: 800; font-size: 40px; line-height: 1; letter-spacing: -.02em; }
+.specimen .b { font-size: 15px; color: var(--ink-2); margin-top: 6px; }
+.rules { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; color: var(--ink-2); font-size: 14px; }
+.rules b { color: var(--ink); }
+@media (prefers-reduced-motion: no-preference) {
+  .btn, .item, .chk { transition: transform .12s ease, background-color .12s ease; }
+  .btn:active, .item:active { transform: scale(.98); }
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="3"/><path d="M3 10h18"/><circle cx="16.5" cy="15" r="1.2" fill="currentColor"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11h10.2L20 8H6.2"/><circle cx="9" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></symbol>
+    <symbol id="i-cam" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+    <symbol id="i-task" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M16 5.2a3.2 3.2 0 010 5.6M18 14.3c1.8.8 3 2.6 3 5.7"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></symbol>
+  </defs>
+</svg>
+
+<main class="page">
+  <header class="intro">
+    <span class="tag">Dirección visual · borrador</span>
+    <h1>Un hogar que se lee de un vistazo</h1>
+    <p>Cifras grandes, una sola acción principal en amarillo y un color por persona. Los nombres, importes y productos son datos de ejemplo. Toca los productos de la compra y los checks de Hoy para ver cómo responden.</p>
+  </header>
+
+  <section class="screens" aria-label="Pantallas de ejemplo">
+
+    <!-- 1. HOY -->
+    <div class="col">
+      <div class="phone" role="group" aria-label="Pantalla Hoy">
+        <div class="scroll">
+          <div class="top">
+            <span class="ctx"><span class="dot">P</span>Piso Gracia <svg width="14" height="14"><use href="#i-down"/></svg></span>
+            <span class="stack"><span class="av m1">D</span><span class="av m2">I</span><span class="av m3">S</span></span>
+          </div>
+          <div>
+            <p class="date">Sábado 3 de octubre</p>
+            <h2 class="h1">Hoy tienes<br>2 cosas</h2>
+          </div>
+
+          <div class="card">
+            <div class="card-h"><h3>Para hacer</h3><span class="label tab" id="todoCount">2 pendientes</span></div>
+            <div class="row">
+              <button class="chk todo" aria-checked="false" role="checkbox" aria-label="Sacar la basura"><svg><use href="#i-check"/></svg></button>
+              <div class="grow"><div class="t">Sacar la basura</div><div class="s">Hoy · cada 2 días</div></div>
+              <span class="av m2" title="Irene">I</span>
+            </div>
+            <div class="row">
+              <button class="chk todo" aria-checked="false" role="checkbox" aria-label="Pagar la luz"><svg><use href="#i-check"/></svg></button>
+              <div class="grow"><div class="t">Pagar la luz · 64,10 €</div><div class="s">Vence el lunes 5</div></div>
+              <span class="av m1" title="Dani">D</span>
+            </div>
+          </div>
+
+          <div class="review">
+            <span>3 gastos por revisar</span>
+            <button class="btn">Revisar</button>
+          </div>
+
+          <div class="card">
+            <div class="card-h"><h3>Compra</h3><button class="link">Modo tienda</button></div>
+            <div class="num" style="font-size:28px">7 productos</div>
+            <div class="s" style="color:var(--ink-2);font-size:14px">Leche, huevos, café, arroz y 3 más</div>
+          </div>
+
+          <div class="card">
+            <div class="card-h"><h3>Dinero</h3><span class="label">Octubre</span></div>
+            <div class="bal">
+              <span class="av m2">I</span>
+              <span class="arrow"><svg><use href="#i-arrow"/></svg></span>
+              <span class="av m1">D</span>
+              <div class="grow" style="flex:1"></div>
+              <span class="amt">38,20 €</span>
+            </div>
+            <div class="s" style="color:var(--ink-2);font-size:13px">Irene debe a Dani desde el día 1</div>
+          </div>
+        </div>
+        <nav class="nav" aria-label="Navegación principal">
+          <button aria-current="page"><svg><use href="#i-home"/></svg>Hoy</button>
+          <button><svg><use href="#i-wallet"/></svg>Dinero</button>
+          <button class="fab" aria-label="Añadir"><svg><use href="#i-plus"/></svg></button>
+          <button><svg><use href="#i-cart"/></svg>Compra</button>
+          <button><svg><use href="#i-menu"/></svg>Más</button>
+        </nav>
+      </div>
+      <p class="cap"><b>Hoy.</b> Solo aparece lo que pide acción. Lo que está vacío se oculta.</p>
+    </div>
+
+    <!-- 2. DINERO -->
+    <div class="col">
+      <div class="phone" role="group" aria-label="Pantalla Dinero">
+        <div class="scroll">
+          <div class="top">
+            <span class="ctx"><span class="dot">P</span>Piso Gracia <svg width="14" height="14"><use href="#i-down"/></svg></span>
+            <span class="label">Octubre</span>
+          </div>
+          <div>
+            <p class="label">Gastado este mes</p>
+            <div class="num big">1.286,40 €</div>
+          </div>
+
+          <div class="card">
+            <div class="cat"><span style="font-weight:600">Alquiler</span><span class="amt">1.050,00 €</span><div class="bar"><i style="width:82%"></i></div></div>
+            <div class="cat"><span style="font-weight:600">Supermercado</span><span class="amt">138,20 €</span><div class="bar"><i style="width:11%"></i></div></div>
+            <div class="cat"><span style="font-weight:600">Suministros</span><span class="amt">64,10 €</span><div class="bar"><i style="width:5%"></i></div></div>
+            <div class="cat"><span style="font-weight:600">Ocio</span><span class="amt">34,10 €</span><div class="bar"><i style="width:3%"></i></div></div>
+          </div>
+
+          <div class="review"><span>3 por revisar</span><button class="btn">Revisar</button></div>
+
+          <div class="card">
+            <div class="card-h"><h3>Saldos</h3></div>
+            <div class="bal"><span class="av m2">I</span><span class="arrow"><svg><use href="#i-arrow"/></svg></span><span class="av m1">D</span><span style="flex:1"></span><span class="amt">38,20 €</span></div>
+            <div class="bal"><span class="av m3">S</span><span class="arrow"><svg><use href="#i-arrow"/></svg></span><span class="av m1">D</span><span style="flex:1"></span><span class="amt">12,50 €</span></div>
+            <button class="btn ghost full">Liquidar</button>
+          </div>
+
+          <div class="card">
+            <div class="card-h"><h3>Movimientos</h3></div>
+            <div class="row">
+              <span class="av m1">D</span>
+              <div class="grow"><div class="t">Mercadona</div><div class="s">Supermercado · entre 3</div></div>
+              <span class="amt">43,20 €</span>
+            </div>
+            <div class="row">
+              <span class="av m1">D</span>
+              <div class="grow"><div class="t">Gasolina</div><div class="s"><span class="pill"><svg><use href="#i-lock"/></svg>Solo tú</span></div></div>
+              <span class="amt">35,00 €</span>
+            </div>
+            <div class="row">
+              <span class="av m2">I</span>
+              <div class="grow"><div class="t">Regalo de mamá</div><div class="s"><span class="pill"><svg><use href="#i-users"/></svg>Dani e Irene</span></div></div>
+              <span class="amt">60,00 €</span>
+            </div>
+            <div class="row">
+              <span class="av m3">S</span>
+              <div class="grow"><div class="t">Pizzería</div><div class="s">Ocio · entre 2</div></div>
+              <span class="amt">28,40 €</span>
+            </div>
+          </div>
+        </div>
+        <nav class="nav" aria-label="Navegación principal">
+          <button><svg><use href="#i-home"/></svg>Hoy</button>
+          <button aria-current="page"><svg><use href="#i-wallet"/></svg>Dinero</button>
+          <button class="fab" aria-label="Añadir"><svg><use href="#i-plus"/></svg></button>
+          <button><svg><use href="#i-cart"/></svg>Compra</button>
+          <button><svg><use href="#i-menu"/></svg>Más</button>
+        </nav>
+      </div>
+      <p class="cap"><b>Dinero.</b> Un número grande, categorías por peso y quién debe a quién. Cada gasto dice quién lo ve.</p>
+    </div>
+
+    <!-- 3. AÑADIR -->
+    <div class="col">
+      <div class="phone" role="group" aria-label="Pantalla Añadir con asistente">
+        <div class="scroll" aria-hidden="true">
+          <div class="top"><span class="ctx"><span class="dot">P</span>Piso Gracia</span></div>
+          <h2 class="h1">Hoy tienes<br>2 cosas</h2>
+        </div>
+        <div class="dim"></div>
+        <div class="sheet">
+          <div class="grab"></div>
+          <div class="cap-field">
+            <span class="txt">Compré 35 de gasolina</span>
+            <button class="mic" aria-label="Hablar"><svg><use href="#i-mic"/></svg></button>
+          </div>
+          <div class="quick">
+            <button><svg><use href="#i-wallet"/></svg>Gasto</button>
+            <button><svg><use href="#i-cart"/></svg>Compra</button>
+            <button><svg><use href="#i-task"/></svg>Tarea</button>
+            <button><svg><use href="#i-cam"/></svg>Ticket</button>
+          </div>
+          <div class="prop">
+            <span class="label">He entendido un gasto</span>
+            <div class="num big2">35,00 €</div>
+            <dl class="kv">
+              <dt>Categoría</dt><dd>Combustible</dd>
+              <dt>Fecha</dt><dd>Hoy, 3 oct</dd>
+              <dt>Pagó</dt><dd>Dani · Tarjeta</dd>
+            </dl>
+            <div class="seg" role="group" aria-label="Quién lo ve">
+              <button aria-pressed="true">Solo yo</button>
+              <button aria-pressed="false">Algunos</button>
+              <button aria-pressed="false">Todo el piso</button>
+            </div>
+            <div>
+              <p class="label" style="margin-bottom:6px">Reparto en 3 · céntimos exactos</p>
+              <div class="split">
+                <span><i class="av m1">D</i>11,67</span>
+                <span><i class="av m2">I</i>11,67</span>
+                <span><i class="av m3">S</i>11,66</span>
+              </div>
+            </div>
+            <div class="conf">
+              <button class="btn ghost">Editar</button>
+              <button class="btn pop"><svg><use href="#i-check"/></svg>Confirmar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="cap"><b>Añadir.</b> Escribes o hablas. El asistente propone, tú confirmas. Nada se guarda sin tu visto bueno.</p>
+    </div>
+
+    <!-- 4. COMPRA -->
+    <div class="col">
+      <div class="phone" role="group" aria-label="Pantalla Compra en modo tienda">
+        <div class="scroll">
+          <div class="top">
+            <span class="ctx"><span class="dot">P</span>Semanal <svg width="14" height="14"><use href="#i-down"/></svg></span>
+            <span class="label tab" id="shopCount">5 por comprar</span>
+          </div>
+          <h2 class="h1">En la tienda</h2>
+          <div class="add"><div class="field">Añadir producto</div><button class="mic" aria-label="Añadir por voz"><svg><use href="#i-mic"/></svg></button></div>
+
+          <div class="sec">
+            <span class="label">Lácteos y huevos</span>
+            <button class="item shop" aria-pressed="false"><span class="chk"><svg><use href="#i-check"/></svg></span><span class="grow"><span class="nm">Leche</span> <span class="qty">× 6</span></span><span class="av m2">I</span></button>
+            <button class="item shop" aria-pressed="false"><span class="chk"><svg><use href="#i-check"/></svg></span><span class="grow"><span class="nm">Huevos</span> <span class="qty">× 12</span></span><span class="av m1">D</span></button>
+          </div>
+          <div class="sec">
+            <span class="label">Despensa</span>
+            <button class="item shop" aria-pressed="false"><span class="chk"><svg><use href="#i-check"/></svg></span><span class="grow"><span class="nm">Café</span></span><span class="av m3">S</span></button>
+            <button class="item shop" aria-pressed="false"><span class="chk"><svg><use href="#i-check"/></svg></span><span class="grow"><span class="nm">Arroz</span> <span class="qty">× 2 kg</span></span><span class="av m1">D</span></button>
+          </div>
+          <div class="sec">
+            <span class="label">Limpieza</span>
+            <button class="item shop" aria-pressed="false"><span class="chk"><svg><use href="#i-check"/></svg></span><span class="grow"><span class="nm">Detergente</span></span><span class="av m2">I</span></button>
+            <button class="item shop" aria-pressed="true"><span class="chk"><svg><use href="#i-check"/></svg></span><span class="grow"><span class="nm">Papel higiénico</span></span><span class="av m3">S</span></button>
+          </div>
+          <button class="btn primary full">Cerrar compra y añadir gasto</button>
+        </div>
+        <nav class="nav" aria-label="Navegación principal">
+          <button><svg><use href="#i-home"/></svg>Hoy</button>
+          <button><svg><use href="#i-wallet"/></svg>Dinero</button>
+          <button class="fab" aria-label="Añadir"><svg><use href="#i-plus"/></svg></button>
+          <button aria-current="page"><svg><use href="#i-cart"/></svg>Compra</button>
+          <button><svg><use href="#i-menu"/></svg>Más</button>
+        </nav>
+      </div>
+      <p class="cap"><b>Compra.</b> Filas de 60 px para usarla con una mano en el pasillo. Los demás ven el tachado al instante.</p>
+    </div>
+  </section>
+
+  <section class="system" aria-label="Sistema visual">
+    <div class="sys">
+      <h2>Color</h2>
+      <div class="sw">
+        <div style="background:var(--brand);color:var(--brand-ink)">Pino<br>marca</div>
+        <div style="background:var(--pop);color:var(--pop-ink)">Señal<br>acción</div>
+        <div style="background:var(--surface-2)">Neutro<br>verdoso</div>
+        <div style="background:var(--m1);color:#fff">Dani</div>
+        <div style="background:var(--m2);color:#fff">Irene</div>
+        <div style="background:var(--m3);color:#fff">Sara</div>
+      </div>
+      <ul class="rules">
+        <li><b>Amarillo solo para la acción principal</b> de cada pantalla.</li>
+        <li><b>Un color por persona</b>, siempre con su inicial para no depender del color.</li>
+        <li>Claro y oscuro con el mismo peso visual.</li>
+      </ul>
+    </div>
+    <div class="sys specimen">
+      <h2>Tipografía</h2>
+      <div>
+        <div class="d">1.286,40 €</div>
+        <div class="b">Bricolage Grotesque para cifras y titulares. Figtree para todo lo demás. Cifras tabulares en importes.</div>
+      </div>
+      <ul class="rules">
+        <li>Importes: negrita, con signo y formato español.</li>
+        <li>Etiquetas en mayúsculas pequeñas con espaciado.</li>
+      </ul>
+    </div>
+    <div class="sys">
+      <h2>Reglas</h2>
+      <ul class="rules">
+        <li><b>Una acción por pantalla</b> en la parte baja, al alcance del pulgar.</li>
+        <li><b>Áreas táctiles</b> de 48 px o más; 60 px en la tienda.</li>
+        <li><b>Privacidad visible:</b> cada gasto muestra quién lo ve.</li>
+        <li><b>Confirmar sin diálogos:</b> propuesta editable y "Deshacer".</li>
+        <li><b>Vacío se oculta:</b> nada de "0 tareas".</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  function updTodo() {
+    var open = document.querySelectorAll('.todo[aria-checked="false"]').length;
+    document.getElementById('todoCount').textContent = open === 0 ? 'Todo hecho' : open + (open === 1 ? ' pendiente' : ' pendientes');
+  }
+  document.querySelectorAll('.todo').forEach(function (b) {
+    b.addEventListener('click', function () {
+      b.setAttribute('aria-checked', b.getAttribute('aria-checked') === 'true' ? 'false' : 'true');
+      updTodo();
+    });
+  });
+  function updShop() {
+    var open = document.querySelectorAll('.shop[aria-pressed="false"]').length;
+    document.getElementById('shopCount').textContent = open === 0 ? 'Compra completa' : open + ' por comprar';
+  }
+  document.querySelectorAll('.shop').forEach(function (b) {
+    b.addEventListener('click', function () {
+      b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+      updShop();
+    });
+  });
+  document.querySelectorAll('.seg').forEach(function (seg) {
+    seg.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        seg.querySelectorAll('button').forEach(function (o) { o.setAttribute('aria-pressed', 'false'); });
+        b.setAttribute('aria-pressed', 'true');
+      });
+    });
+  });
+})();
+</script>
