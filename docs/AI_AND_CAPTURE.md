@@ -160,3 +160,21 @@ El texto de SMS o email se interpreta con Gemini (importe, comercio, últimos 4 
 - Para ello hace falta un intermediario con licencia (agregador regulado, p. ej. Tink, TrueLayer, Enable Banking, GoCardless), porque HomeGest no tiene licencia propia.
 - Limitaciones: el permiso caduca (hasta unos 180 días) y hay que reconectar; los movimientos llegan con retraso (de minutos a un día, según el banco); los nombres de comercio vienen sucios; cobran por conexión; contratar como empresa o autónomo es lo habitual. Algunos agregadores ofrecen modos gratuitos para uso propio: **verificar condiciones vigentes** en el spike.
 - No puede mover dinero ni hacer pagos. Solo lee.
+
+## 9. Requisito: mismo comportamiento en Android e iOS (2026-10-04)
+
+**Hechos:**
+- iOS no permite a ninguna app (nativa o PWA) leer las notificaciones de otras apps. Android sí, con "Acceso a notificaciones".
+- Por tanto, leer la notificación del banco **no puede ser igual en los dos sistemas**.
+- La única vía idéntica en ambos es **banca abierta**, porque se hace en el servidor y no depende del móvil. La PWA es suficiente.
+
+**Decisión propuesta:**
+- Camino común: banca abierta (agregador regulado). Se adelanta el spike S3 a la Fase 0.
+- Complementos opcionales, no necesarios: Atajo de Wallet (iOS) y reenvío de notificaciones (Android) para detección instantánea. El gasto de la banca abierta se fusiona con el instantáneo por la regla anti-duplicados.
+
+**Verificaciones del spike S3 (condiciones vigentes a 2026-10-04, según búsqueda web):**
+- Enable Banking ofrece un modo "restricted production" gratuito para vincular **las cuentas propias del dueño de la aplicación**, sin contrato comercial. Verificar si permite vincular cuentas de otras personas (hermana, compañera) o si eso exige contrato.
+- GoCardless Bank Account Data (antes Nordigen) tiene los registros nuevos deshabilitados según fuentes consultadas. No contar con él.
+- Consentimiento: el límite regulatorio pasó de 90 a 180 días; la reconexión periódica sigue existiendo.
+- Medir latencia real entre el pago y la aparición del movimiento, banco por banco, y si aparecen movimientos pendientes.
+- Cobertura de los bancos concretos de los tres usuarios.

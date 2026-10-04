@@ -41,7 +41,7 @@
 
 **S1 — Captura con Gemini (1–2 días).** Con 30–50 frases y tickets reales en español: ¿precisión de importe, fecha, comercio y categoría? ¿latencia? ¿coste por captura? Resultado: elección de modelo y umbrales de confianza iniciales.
 **S2 — PWA en iOS/Android reales (1 día).** Login OTP dentro de la PWA instalada; grabación de audio con `MediaRecorder` y su envío a Gemini; foto desde cámara; Web Push. Resultado: lista de limitaciones confirmadas y soluciones.
-**S3 — Banca:** *aplazado* (según vayamos avanzando).
+**S3 — Banca abierta (adelantado, 2026-10-04):** requisito de funcionar igual en Android e iOS. Conectar tu cuenta con un agregador en modo propio, medir latencia, calidad de los nombres de comercio y cobertura; comprobar si se pueden vincular cuentas de las otras dos personas. Ver `AI_AND_CAPTURE.md` §9.
 
 ## 4. Fuera de alcance de la Fase 0
 
