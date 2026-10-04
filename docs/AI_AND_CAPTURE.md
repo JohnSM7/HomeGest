@@ -178,3 +178,21 @@ El texto de SMS o email se interpreta con Gemini (importe, comercio, últimos 4 
 - Consentimiento: el límite regulatorio pasó de 90 a 180 días; la reconexión periódica sigue existiendo.
 - Medir latencia real entre el pago y la aparición del movimiento, banco por banco, y si aparecen movimientos pendientes.
 - Cobertura de los bancos concretos de los tres usuarios.
+
+## 10. Decisión revisada: captura instantánea primero (2026-10-04)
+
+El usuario descarta la banca abierta como vía principal porque no es instantánea y el gasto debe registrarse en el momento del cargo. Sustituye a §9 en lo que se contradiga.
+
+**Principio:** el aviso debe llegar a los pocos segundos del pago, en Android e iOS. El mecanismo puede ser distinto en cada sistema; el resultado para el usuario, el mismo.
+
+| Situación | Mecanismo instantáneo | Cómo se enteran los servidores |
+|---|---|---|
+| Android, cualquier banco con notificación en su app | Leer la notificación (Tasker/MacroDroid ahora; mini app Android después) | Webhook |
+| Android o iOS, el banco envía **SMS** por cada compra | Automatización de SMS (Atajos en iOS; Tasker/MacroDroid en Android) | Webhook |
+| iOS, pago con **Apple Pay** | Automatización "Transacción" de Wallet | Webhook |
+| Cualquiera, el banco envía **email** por cada compra | Reenvío a dirección de entrada | Email entrante |
+| iOS, tarjeta física y el banco **solo** notifica en su app | **Sin solución instantánea.** Opciones: activar alerta por SMS/email en el banco, pagar con Apple Pay, o registro manual/voz | — |
+
+**Banca abierta:** pasa a V2, como conciliación (confirma importes definitivos, recoge lo que se escapó, detecta duplicados). Ya no es el camino principal ni bloquea el MVP. El spike S3 vuelve a "aplazado".
+
+**Prueba previa a construir (la hace el usuario en su móvil, sin backend):** ver pasos en la conversación del 2026-10-04. Resultado esperado: confirmar si la automatización se ejecuta sola y qué datos entrega.
