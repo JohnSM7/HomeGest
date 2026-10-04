@@ -1,5 +1,7 @@
 # Fase 0 — Cimientos (especificación para revisión)
 
+> Actualización 2026-10-04 ([ADR-002](adr/ADR-002-groups.md)): donde dice "hogar" léase "grupo" (`spaces.type = 'group'`, con `group_kind` y `modules`). La invitación incluye enlace, código corto y QR. Los participantes sin cuenta pasan a la Fase 1.
+
 > Sin código de producto todavía. Objetivo: una base segura, desplegada y probada sobre la que construir, y dos spikes que reducen el riesgo.
 
 ## 1. Qué vamos a construir

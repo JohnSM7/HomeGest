@@ -139,3 +139,24 @@ Preguntar **siempre** da fatiga en 2 semanas. Propongo un ajuste por persona:
 - Conjunto de prueba con 30–50 frases y tickets reales en español (aportados por ti, anonimizados).
 - Objetivos iniciales: importe correcto ≥ 95 %, fecha ≥ 95 %, categoría correcta en primera sugerencia ≥ 75 % con reglas vacías, y ≥ 90 % tras 2 semanas de uso.
 - Se reevalúa en cada cambio de modelo o de prompt.
+
+## 8. Más vías de detección y banca abierta (añadido 2026-10-04)
+
+### Vías sin banca abierta, por orden de esfuerzo
+| Vía | Cómo funciona | Cubre | Plataforma | A validar |
+|---|---|---|---|---|
+| Atajo Apple Pay | Automatización "Transacción" de Wallet → endpoint | Pagos con Apple Pay | iOS | Campos entregados y ejecución sin confirmación |
+| **SMS del banco** | Automatización "Mensaje" de Atajos (filtra por remitente del banco) reenvía el texto al endpoint | Cualquier tarjeta con aviso por SMS | iOS (Atajos); Android (Tasker/MacroDroid) | Que el banco envíe SMS por cada compra y que iOS lo ejecute sin preguntar |
+| **Email del banco** | Regla de reenvío a una dirección personal de entrada (`tu-codigo@…`) | Cualquier banco que avise por email | Cualquiera | Servicio de correo entrante y formato de los avisos |
+| Banca abierta | Conexión autorizada con el banco | Todo | Cualquiera | Coste, cobertura, consentimiento |
+
+El texto de SMS o email se interpreta con Gemini (importe, comercio, últimos 4 dígitos, fecha). Los datos estructurados de Wallet no necesitan IA.
+
+**Duplicados entre vías:** si llegan el aviso de Wallet y el SMS del mismo pago, se fusionan por regla (mismo usuario, mismo importe, ventana de unos 10 minutos).
+
+### Banca abierta (open banking, PSD2)
+- La normativa europea PSD2 obliga a los bancos a dar acceso a los datos de tus cuentas a terceros **si tú lo autorizas**, mediante interfaces seguras.
+- Flujo: "Conectar banco" → eliges el banco → te redirige a **la web o app del propio banco** donde inicias sesión y apruebas → vuelves a HomeGest con un permiso de **solo lectura**. **La app nunca ve tu usuario ni tu contraseña.**
+- Para ello hace falta un intermediario con licencia (agregador regulado, p. ej. Tink, TrueLayer, Enable Banking, GoCardless), porque HomeGest no tiene licencia propia.
+- Limitaciones: el permiso caduca (hasta unos 180 días) y hay que reconectar; los movimientos llegan con retraso (de minutos a un día, según el banco); los nombres de comercio vienen sucios; cobran por conexión; contratar como empresa o autónomo es lo habitual. Algunos agregadores ofrecen modos gratuitos para uso propio: **verificar condiciones vigentes** en el spike.
+- No puede mover dinero ni hacer pagos. Solo lee.

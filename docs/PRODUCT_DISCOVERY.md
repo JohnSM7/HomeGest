@@ -13,7 +13,8 @@
 | Backend | Supabase (región UE) |
 | IA | Gemini (acceso de pago por privacidad de datos) |
 | Banca | Aplazada: "según vayamos avanzando" |
-| Primer hogar (dogfooding) | **Piso de 3**: usuario, hermana y compañera de piso (relaciones mixtas) |
+| Unidad del producto | **Grupos libres** (ver [ADR-002](adr/ADR-002-groups.md)). "Hogar" en este documento equivale a "grupo" |
+| Primer grupo (dogfooding) | **Piso de 3**: usuario, hermana y compañera de piso (relaciones mixtas) |
 | Negocio | Primero herramienta propia; comercializar es una decisión posterior (multi-hogar desde el día 1) |
 
 **Efecto sobre este documento:** donde dice "parejas" como segmento de arranque, léase "tu piso de 3" para validar, y "pisos compartidos + parejas" como segmento de lanzamiento futuro. El orden de fases y el ajuste de permisos están en [PHASE_0.md](PHASE_0.md). Los plazos de §7 y §20 asumían un equipo pequeño: para una persona a tiempo parcial hay que replanificarlos.
