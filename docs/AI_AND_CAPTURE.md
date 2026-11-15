@@ -206,3 +206,21 @@ El usuario descarta la banca abierta como vía principal porque no es instantán
 - A comprobar en el móvil: que la notificación se lee completa aunque el contenido esté oculto en la pantalla de bloqueo, y que MacroDroid no sea cerrado por el ahorro de batería.
 - Si MacroDroid resulta frágil, se escribe una mini app Android que solo reenvía notificaciones (ADR-003).
 - Banca abierta (BBVA aparece en los agregadores consultados) queda como conciliación posterior.
+
+## 12. Formato real de los avisos de BBVA (2026-11-15)
+
+Muestras en `docs/fixtures/bbva-notifications.json`. Estructura:
+
+> **Título:** `Pago aceptado 👍💳`
+> **Texto:** `Pago aceptado de {importe} EUR en {comercio} con tu tarjeta terminada en {últimos4}.`
+
+**Consecuencias de diseño:**
+- El aviso trae **importe, comercio y tarjeta**. Se parsea con una **expresión regular determinista**, sin IA. Más rápido, gratis y exacto. Gemini solo entra como respaldo si el formato cambia y para **sugerir categoría**.
+- Importe en formato español (`35,61`; miles con punto: `1.234,56`) → céntimos enteros.
+- Los **últimos 4 dígitos** identifican la tarjeta, y la tarjeta identifica a la persona que paga. Se registra el pagador sin preguntar.
+- La hora del gasto es la de llegada del aviso (instantánea). La fecha no viene en el texto.
+- El comercio llega con nombres distintos ("MERCADONA PUENTE ALCOCER", "Electraworks Ceuta SA"): las reglas de categoría deben comparar por **prefijo/palabra clave**, no por igualdad exacta.
+- Filtro en el móvil: reenviar solo avisos con título `Pago aceptado`. Para no enviar al servidor otros mensajes del banco.
+- Idempotencia: clave = usuario + importe + comercio + últimos4 + minuto de recepción.
+
+**Faltan muestras de otros tipos** para no registrar mal: pago rechazado, compra online, devolución/reembolso, Bizum recibido o enviado, recibo domiciliado, transferencia, cajero, pago en otra divisa. Mientras no existan, cualquier aviso que no coincida con la expresión de "Pago aceptado" se ignora (no se registra nada).

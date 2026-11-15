@@ -1,0 +1,21 @@
+{
+  "source": "BBVA app (historial 'Notificaciones móvil'), muestras reales con la tarjeta anonimizada",
+  "note": "Falta confirmar que el aviso push del sistema Android trae el mismo texto que este historial interno.",
+  "samples": [
+    {
+      "title": "Pago aceptado 👍💳",
+      "text": "Pago aceptado de 35,61 EUR en MERCADONA PUENTE ALCOCER con tu tarjeta terminada en 0000.",
+      "expected": { "amount_minor": 3561, "currency": "EUR", "merchant": "MERCADONA PUENTE ALCOCER", "card_last4": "0000" }
+    },
+    {
+      "title": "Pago aceptado 👍💳",
+      "text": "Pago aceptado de 40,70 EUR en SUPECO EDUARDO BARREIROS con tu tarjeta terminada en 0000.",
+      "expected": { "amount_minor": 4070, "currency": "EUR", "merchant": "SUPECO EDUARDO BARREIROS", "card_last4": "0000" }
+    },
+    {
+      "title": "Pago aceptado 👍💳",
+      "text": "Pago aceptado de 50,00 EUR en Electraworks Ceuta SA con tu tarjeta terminada en 0000.",
+      "expected": { "amount_minor": 5000, "currency": "EUR", "merchant": "Electraworks Ceuta SA", "card_last4": "0000" }
+    }
+  ]
+}
