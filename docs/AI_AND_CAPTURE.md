@@ -196,3 +196,13 @@ El usuario descarta la banca abierta como vía principal porque no es instantán
 **Banca abierta:** pasa a V2, como conciliación (confirma importes definitivos, recoge lo que se escapó, detecta duplicados). Ya no es el camino principal ni bloquea el MVP. El spike S3 vuelve a "aplazado".
 
 **Prueba previa a construir (la hace el usuario en su móvil, sin backend):** ver pasos en la conversación del 2026-10-04. Resultado esperado: confirmar si la automatización se ejecuta sola y qué datos entrega.
+
+## 11. Caso real del grupo: Android + BBVA (2026-11-15)
+
+- Dispositivos: Android (confirmar que los tres miembros usan Android).
+- Banco: BBVA, avisa de las compras **solo por notificación de su app** (sin SMS ni email).
+- **Vía elegida:** lectura de la notificación en el móvil (MacroDroid/Tasker) → `POST` a `/api/capture/notification` con token personal → parseo → push de "¿Categoría?". Instantáneo.
+- Pendiente: muestras reales del texto de las notificaciones de BBVA (con datos sensibles tapados) para fijar el parser y el conjunto de pruebas.
+- A comprobar en el móvil: que la notificación se lee completa aunque el contenido esté oculto en la pantalla de bloqueo, y que MacroDroid no sea cerrado por el ahorro de batería.
+- Si MacroDroid resulta frágil, se escribe una mini app Android que solo reenvía notificaciones (ADR-003).
+- Banca abierta (BBVA aparece en los agregadores consultados) queda como conciliación posterior.
