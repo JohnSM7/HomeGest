@@ -224,3 +224,23 @@ Muestras en `docs/fixtures/bbva-notifications.json`. Estructura:
 - Idempotencia: clave = usuario + importe + comercio + últimos4 + minuto de recepción.
 
 **Faltan muestras de otros tipos** para no registrar mal: pago rechazado, compra online, devolución/reembolso, Bizum recibido o enviado, recibo domiciliado, transferencia, cajero, pago en otra divisa. Mientras no existan, cualquier aviso que no coincida con la expresión de "Pago aceptado" se ignora (no se registra nada).
+
+## 13. Tipos de aviso de BBVA y qué hacer con cada uno (2026-11-15)
+
+Lista aportada por el usuario. Pendiente: una muestra real de cada texto para escribir y probar el parser. Mientras no haya muestra, se ignoran.
+
+| Aviso | Tratamiento propuesto |
+|---|---|
+| Pago aceptado | **Gasto.** Ya parseable (ver §12) |
+| Confirmar pago | No registra nada (es una petición de confirmación; el "Pago aceptado" llegará después). Posible aviso opcional en la app |
+| Pago denegado | No registra. Opcional: avisar al usuario |
+| Pago Bizum | Gasto o **liquidación** si el destinatario es miembro del grupo (sugerirlo) |
+| Recibo de cargo | Gasto domiciliado: candidato a recurrente/factura; pregunta categoría la primera vez |
+| Retirada aceptada | **Traspaso a efectivo**, no gasto (evita contar dos veces el efectivo gastado) |
+| Abono de transferencia | **Ingreso.** Privado por defecto |
+| Ingreso en tarjeta | Ingreso o devolución de un gasto: preguntar |
+| Ingreso efectivo | Ingreso/traspaso desde efectivo. Privado por defecto |
+
+## 14. Despliegue con Supabase autoalojado en NAS (2026-11-15)
+
+Pendiente de decisión. Ver conversación. Implicaciones: la app y el endpoint de captura deben ser accesibles por HTTPS desde fuera de casa (la PWA lo exige y los móviles envían avisos con datos móviles); copias de seguridad propias; actualizaciones propias.
