@@ -4,6 +4,20 @@
 
 > Sin código de producto todavía. Objetivo: una base segura, desplegada y probada sobre la que construir, y dos spikes que reducen el riesgo.
 
+## Estado (2026-11-15)
+
+| Parte | Estado |
+|---|---|
+| Migraciones: perfiles, espacios, membresías, invitaciones, auditoría | Hecho |
+| RLS y privilegios (deny-by-default, sin escrituras directas) | Hecho |
+| RPC: crear grupo, invitar, vista previa, unirse, salir, roles, expulsar | Hecho |
+| Tests pgTAP de aislamiento (115 aserciones) y comprobación de que detectan roturas | Hecho: `supabase/tests/run-local.sh` |
+| CI en GitHub Actions | Escrita, **sin ejecutar todavía** |
+| App Next.js + PWA, login por OTP, pantallas, design tokens | Pendiente |
+| Despliegue en tu NAS | Pendiente |
+
+Los criterios A2 a A8 y A10 de la sección 2 están cubiertos por los tests. A1, A9 (en CI), A11 y A12 dependen de la app.
+
 ## 1. Qué vamos a construir
 
 1. Repo Next.js + TypeScript + Tailwind + shadcn/ui, PWA instalable (manifest, iconos, service worker mínimo).

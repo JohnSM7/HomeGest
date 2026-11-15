@@ -1,0 +1,19 @@
+name: CI
+on:
+  push:
+  pull_request:
+
+jobs:
+  database:
+    name: Base de datos (migraciones + pgTAP)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar PostgreSQL 16 y pgTAP
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-16 postgresql-16-pgtap
+      - name: Migraciones y tests de aislamiento
+        env:
+          PGTEST_DIR: ${{ runner.temp }}/pgtest
+        run: supabase/tests/run-local.sh
